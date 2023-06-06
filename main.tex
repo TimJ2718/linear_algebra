@@ -1,0 +1,181 @@
+\documentclass[10pt,a4paper]{article}
+ \usepackage[utf8]{inputenc}
+ \usepackage[german]{babel}
+ \usepackage[T1]{fontenc}
+ \usepackage{amsmath}
+ \usepackage{amsfonts}
+ \usepackage{amssymb}
+ \usepackage{hyperref}
+ \usepackage{ bbold }
+ \usepackage{MnSymbol}
+\begin{document}
+\tableofcontents
+\section{Introduction}
+This document is intended as an extension to the exercise generator:\\
+ \url{https://github.com/TimJ2718/python-exercise-generator}\\
+and as an introduction to linear algebra. 
+ 
+\section{Determinant}
+\subsection{Definition and conclusions}
+The determinant function $\det(A)$ for a square matrix: $A \in K^{n \times n}$ is defined as the function which maps $K^{n \times n} \rightarrow K$ and satifies the following properties:\\
+We write $A=(v_1,...v_n)$, where $v \in K ^{1 \times n}$.
+\begin{itemize}
+	\item $\det(v_1,...\lambda \cdot v_i,...v_n) = \lambda \det(v_1, ... v_i, ... v_n)$
+	\item $\det(v_1,...v_i+w,...v_n) = \det(v_1, ...v_i,...v_n) + \det(v_1,...w,...v_n)$
+	\item $v_i = v_j => \det(v_1,...v_i,...v_j,...v_n)=0$ 
+	\item $\det(\mathbb{1})=1$ (Here $\mathbb{1}$ is the unity matrix)
+\end{itemize}
+Important conclusions are:
+\begin{itemize}
+	\item $\det(A)=0 $ <=> A does not have a full rank <=> The columns/rows are linear dependent
+	\item $\det(A)=\det(A^T)$
+	\item $\det(A \cdot B) = \det(A) \cdot \det(B)$
+	\item $\det(v_1, ..., v_i, ..., v_j , ...v_n) = \det(v_1, ..., v_i+v_j, ...v_n)$
+\end{itemize}
+\subsection{Calculations}
+\subsubsection{Explicit formulas}
+$\det \left[ \left(\begin{array}{cc}
+a_{11} & a_{12}\\
+a_{21} & a_{22}
+\end{array} \right) \right] = a_{11} a_{22} - a_{21} a_{12}$\\
+$\det \left[ \left(\begin{array}{ccc}
+a_{11} & a_{12} & a_{13}\\
+a_{21} & a_{22} & a_{23}\\
+a_{31} & a_{32} & a_{33}
+\end{array} \right) \right] \\
+\ \\
+=a_{11} a_{22} a_{33} + a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}  -a_{31}a_{22}a_{13}-a_{32}a_{23}a_{11}-a_{33}a_{21}a_{12}$\\
+\textbf{Examples}\\
+$\det \left[ \left( \begin{array}{cc}
+ 2 & -3\\
+ 5 & 6
+\end{array} \right) \right]
+= 2 \cdot 6 - (5 \cdot (-3)) = 12 + 15 = 27$\\
+$\det \left[ \left( \begin{array}{ccc}
+ 9 & 3 & 1\\
+ 2 & 6 & 3 \\
+ 6 & -1 & -1
+\end{array} \right) \right]
+= 9 \cdot 6 \cdot (-1) + 3 \cdot 3 \cdot 6 + 1 \cdot 2 \cdot (-1)
+-6 \cdot 6 \cdot 1 - (-1) \cdot 3 \cdot 9 - (-1) \cdot 2 \cdot 3 
+= -54 + 54 -2  - 36 +27 +6 = -5$\\
+
+
+
+
+\subsubsection{Blockmatrix}
+Let be $M \in K^{n \times n}$ and 0 the 0 matrix.\\
+If A and C are quadratic matrices (C does not need to be quadratic) then the determinant of M is given by:
+$M = \det\left[\left(\begin{array}{cc}
+A & B \\
+0 & C
+\end{array}\right)\right]
+= \det\left[A \right] \cdot \det \left[C \right]$\\
+$M = \det\left[\left(\begin{array}{cc}
+A & 0 \\
+C & C
+\end{array}\right)\right]
+= \det\left[A \right] \cdot \det \left[C \right]$\\
+\textbf{Example}\\
+$\det \left[ \left( \begin{array}{ccccc}
+2 & 3 & 4 & 8 & 2\\
+6 & 2 & 3 & 9 & 4\\
+0 & 0 & 9 & 3 & 1\\
+0 & 0 & 2 & 6 & 3\\
+0 & 0 & 6 &-1 &-1
+\end{array}  \right) \right]
+= \det \left[ \left( \begin{array}{cc}
+2 & 3\\
+6 & 2
+\end{array}   \right) \right] \cdot
+\det \left[ \left( \begin{array}{ccc}
+9 & 3 & 1\\
+2 & 6 & 3\\
+6 &-1 &-1
+\end{array}  \right) \right]
+=-14 \cdot (-5) = 70 
+$
+\subsubsection{Triangular matrix}
+$A = \left(\begin{array}{ccc}
+a_{11} & \dots & a_{1n} \\
+\vdots & \ddots & \vdots \\
+a_{n1} & \dots & a_{nn}
+\end{array}  \right)$\\
+There are two kinds of triangular matrices:\\
+A is an upper triangular matrix if all elements under the diagonal are zero: $a_{ij} =0 $ for $i > j$.\\
+A is a lower trinangular matrix if all elements over the diagonal are zeros: $a_{ij}=0 $ for $i <j$.\\
+The determinant of a triangular matrix is given by the product of the diagonal elements:
+$\det(A)=\prod\limits_{i=1}^n a_{ii}$\\
+\textbf{Example}\\
+$\det \left[ \left( \begin{array}{ccc}
+ 2 & 5 & 4\\
+ 0 & 3 & 8\\
+ 0 & 0 & 4
+\end{array} \right) \right] = 2 \cdot 3 \cdot 4 = 24; \;\;
+\det \left[ \left( \begin{array}{ccc}
+ 2 & 0 & 0\\
+ 8 & 3 & 0\\
+ 5 & 4 & 4
+\end{array} \right) \right] = 2 \cdot 3 \cdot 4 = 24$
+
+\subsubsection{Laplace expansion}
+$A = \left(\begin{array}{ccc}
+a_{11} & \dots & a_{1n} \\
+\vdots & \ddots & \vdots \\
+a_{n1} & \dots & a_{nn}
+\end{array}  \right)$\\
+Define: $A_{ij}$ as the matrix where row i and the column j is removed:\\
+$\tilde{A}_{ij}= \left( \begin{array}{cccccc}
+a_{11} & \dots & a_{1,j-1} & a_{1,j+1} & \dots & a_{1n} \\
+\vdots & \ddots & \vdots & \vdots & \udots &  \vdots \\
+a_{i-1,1} & \dots & a_{i-1,j-1} & a_{i-1,j+1} & \dots & a_{i-1,n}\\
+a_{i+1,1} & \dots & a_{i+1,j-1} & a_{i+1,j+1} & \dots & a_{i+1,n}\\
+\vdots & \udots & \vdots & \vdots & \ddots &  \vdots \\
+a_{n1} & \dots & a_{n,j-1} & a_{n,j+1} & \dots & a_{nn}
+\end{array} \right)$\\
+\ \\
+The determinat of A is given by:\\
+$\det(A) = \sum\limits_{j=1}^n (-1)^{i+j} a_{ij} \cdot \tilde{A}_{ij}$\\
+$\det(A) = \sum\limits_{i=1}^n (-1)^{i+j} a_{ij} \cdot \tilde{A}_{ij}$\\
+\textbf{Examples}\\
+$\det \left[ \left( \begin{array}{ccc}
+ 2 & 0 & 2\\
+ 8 & 3 & 1\\
+ 5 & 4 & 4
+\end{array} \right) \right] 
+=(-1)^{1+1} \cdot 2  \cdot \det \left[ \left(\begin{array}{cc}
+3 & 1\\
+4 & 4
+\end{array} \right) \right]
++ (-1)^{1+2} \cdot 0  \cdot \det \left[ \left(\begin{array}{cc}
+8 & 1\\
+5 & 4
+\end{array} \right) \right]
++ (-1)^{1+3} \cdot 2  \cdot \det \left[ \left(\begin{array}{cc}
+8 & 3\\
+5 & 4
+\end{array} \right) \right]
+$\\
+\ \\
+\ \\
+$\det \left[ \left( \begin{array}{ccc}
+ 2 & 0 & 2\\
+ 8 & 3 & 1\\
+ 5 & 4 & 4
+\end{array} \right) \right] 
+=(-1)^{1+2} \cdot 0  \cdot \det \left[ \left(\begin{array}{cc}
+8 & 1\\
+5 & 4
+\end{array} \right) \right]
++ (-1)^{2+2} \cdot 3  \cdot \det \left[ \left(\begin{array}{cc}
+2 & 2\\
+5 & 4
+\end{array} \right) \right]
++ (-1)^{3+2} \cdot 4  \cdot \det \left[ \left(\begin{array}{cc}
+2 & 2\\
+8 & 1
+\end{array} \right) \right]
+$
+
+
+\end{document} 
