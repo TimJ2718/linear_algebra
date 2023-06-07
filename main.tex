@@ -177,5 +177,76 @@ $\det \left[ \left( \begin{array}{ccc}
 \end{array} \right) \right]
 $
 
+\section{Eigenvalue problem}
+\subsection{Introduction}
+A vector $v$ is called eigenvector of the linear map $\varphi$ if $\varphi(v)=\lambda \cdot v$.
+Here the scalar $\lambda$ is called eigenvalue.\\
+For obvious reasons $\varphi$ must be an endomorphismus and can be expressed as a quadratic matrix.
+\subsection{Characteristical polynom}
+Let be: $A \in K^{n \times n}$ and $v \in K^{1 \times n}$ and $\lambda \in K$.\\
+$A \cdot V = \lambda V \rightarrow (\lambda \cdot \mathbb{1}-A) v =0$ (Here $\mathbb{1}$ is again the unity matrix.)\\
+This can only be true if $(\lambda \cdot \mathbb{1} -A)$ has no full rank <=> $\det(\lambda \cdot \mathbb{1} - A) = 0$\\
+We define $\chi(\lambda) = \det(\lambda \cdot \mathbb{1} - A)$ as the characterisitcal polynom.
 
+\subsection{Eigenvalues}
+The eigenvalues are given by the roots of the characteristical polynom. The multiplicity of the root is called algebraic multiplicity.
+\subsection{Eigenvectors}
+The eigenvectors to the eigenvalue $\lambda$ can be found by solving the following equation:\\ 
+$(\lambda_i  \cdot \mathbb{1} - A) v = 0$
+Every eigenvalue has at least one eigenvector but at most as many as the algebraic multiplicity. The number of linear indepenedent eigenvalues of a eigenvalue is called geometric multiplicity.
+\subsection{Example}
+Determine the characteristical polynom, the eigenvalues and the eigenvectors:\\
+$\left(\begin{array}{cc}
+ 1 & 3\\
+ 0 & 4
+\end{array}  \right)$\\
+\ \\
+\textbf{Chracteristical polynom:}\\
+$\chi(\lambda)= \det\left(\begin{array}{cc}
+\lambda -1 & -3 \\
+0 & \lambda - 4
+\end{array} \right)
+= (\lambda-1) \cdot (\lambda -4) -0 \cdot (-3)=\lambda^2-5 \lambda +4$\\
+\ \\
+\textbf{Eigenvalues:}\\
+$\chi(\lambda) = 0 <=> (\lambda-1) \cdot (\lambda-4) =0$\\
+=> $\lambda_1 = 1$ : Algebraic multiplicity: 1\\
+=> $\lambda_2 = 4$ : Algebraic multiplicity: 1\\
+\ \\
+\textbf{Hint}: You can check your result with the following relationship:\\ 
+The sum of the eigenvalues is equal to the trace of the matrix.\\
+$1+4 \stackrel{!}{=} \lambda_1 + \lambda_2$\\
+(Eigenvalues that occur more than once are added multiple times according to their occurance)\\
+(The trace of a matrix is given by the sum of the diagonal elements)\\
+\ \\
+\textbf{Eigenvectors:}\\
+$\lambda_1=1:$\\
+$\left(\begin{array}{cc}
+0 & -3 \\
+0 & -3 \\
+\end{array} \right) \rightarrow
+\left(\begin{array}{cc}
+0 & 1 \\
+0 & 0
+\end{array} \right)
+\rightarrow
+v_1 = \left( \begin{array}{c}
+1 \\ 0
+\end{array} \right)
+$\\
+$\lambda_2=4:$\\
+$\left(\begin{array}{cc}
+3 & -3 \\
+0 & 0 \\
+\end{array} \right) \rightarrow
+\left( \begin{array}{cc}
+1 & - 1 \\
+0 & 0
+\end{array} \right) \rightarrow
+v_2 = \left( \begin{array}{c}
+1 \\1
+\end{array} \right)
+$ \\
+\textbf{Hint}: You can plug in $v$ and $\lambda$ in the definition $A v = \lambda v$ and check if your calculation is right.
+\subsection{Diagonalizability}
 \end{document} 
